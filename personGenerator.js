@@ -72,8 +72,8 @@ const personGenerator = {
 
 
     randomGender: function () {
-        let genderLet = (this.randomIntNumber()) ? this.GENDER_MALE : this.GENDER_FEMALE;
-        return genderLet;
+        const gender = (this.randomIntNumber()) ? this.GENDER_MALE : this.GENDER_FEMALE;
+        return gender;
     },
 
 
@@ -89,9 +89,9 @@ const personGenerator = {
     //  рандомное назначение пола
 
 
-    randomFirstName: function () {
+    randomFirstName: function (gender = this.randomGender()) {
 
-        if (this.randomGender() === 'Женщина') {
+        if (gender == this.GENDER_FEMALE) {
             return this.randomValue(this.firstNameFeMaleJson); 
         }
 
@@ -100,11 +100,12 @@ const personGenerator = {
     },
 
 
-    randomSurname: function () {
+    randomSurname: function (gender = this.randomGender()) {
+        
         // surnameJson - фамилия
         // происходит возврат объекта 
         let surnameLet = this.randomValue(this.surnameJson);
-        if (this.randomGender() == 'Женщина') {
+        if (gender === this.GENDER_FEMALE) {
             return surnameLet + 'a'; 
         }
         return surnameLet;
@@ -114,10 +115,13 @@ const personGenerator = {
 
     // метод getPerson продолжает выполнение в файле init.js
     getPerson: function () {
+        let gender = this.randomGender();
+        console.log('gender ' + gender);
         this.person = {};
-        this.person.gender = this.randomGender();
-        this.person.firstName = this.randomFirstName();
-        this.person.surName = this.randomSurname();
+
+        this.person.gender = gender;
+        this.person.firstName = this.randomFirstName(gender);
+        this.person.surName = this.randomSurname(gender);
         this.person.birthYear = this.randomIntNumber(1974, 1999);
         
 
