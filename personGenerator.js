@@ -61,6 +61,29 @@ const personGenerator = {
             "id_10": "Мария"
         }
     }`,
+    // строка с женскими Профессиями
+    proffNameFeMaleJson: `{
+        "count": 4,
+        "list": {     
+            "id_1": "Няня",
+            "id_2": "Медсестра",
+            "id_3": "Учительница",
+            "id_4": "Волшебница"
+
+        }
+    }`,
+
+    // строка с мужскими Профессиями
+    proffNameMaleJson: `{
+        "count": 4,
+        "list": {     
+            "id_1": "Строитель",
+            "id_2": "Спасатель",
+            "id_3": "Шахтер",
+            "id_4": "Инженер"
+        }
+    }`,
+
 
     // Константы в верхнем регистре - псевдоним для константы используются только как псевдонимы для «жёстко закодированных» значений
     GENDER_MALE: 'Мужчина',
@@ -75,8 +98,6 @@ const personGenerator = {
         const gender = (this.randomIntNumber()) ? this.GENDER_MALE : this.GENDER_FEMALE;
         return gender;
     },
-
-
 
     // метод randomValue преобразующий строки JSON в объект JS благодаря свойству parse
     randomValue: function (json) {
@@ -104,12 +125,21 @@ const personGenerator = {
         
         // surnameJson - фамилия
         // происходит возврат объекта 
-        let surnameLet = this.randomValue(this.surnameJson);
+        let surname = this.randomValue(this.surnameJson);
         if (gender === this.GENDER_FEMALE) {
-            return surnameLet + 'a'; 
+            return surname + 'a'; 
         }
-        return surnameLet;
+        return surname;
 
+    },
+
+    randomProffName: function (gender) {
+
+        if (gender == this.GENDER_FEMALE) {
+            return this.randomValue(this.proffNameFeMaleJson); 
+        }
+
+        return this.randomValue(this.proffNameMaleJson);
     },
 
 
@@ -123,6 +153,7 @@ const personGenerator = {
         this.person.firstName = this.randomFirstName(gender);
         this.person.surName = this.randomSurname(gender);
         this.person.birthYear = this.randomIntNumber(1974, 1999);
+        this.person.proffName = this.randomProffName(gender);
         
 
         return this.person;

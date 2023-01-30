@@ -18,4 +18,5 @@ window.onload = function()
     
     // вывод пола
      document.getElementById('genderOutput').innerText = initPerson.gender;
+     document.getElementById('proffOutput').innerText = initPerson.proffName;
 };
