@@ -89,7 +89,7 @@ const personGenerator = {
     //  рандомное назначение пола
 
 
-    randomFirstName: function (gender = this.randomGender()) {
+    randomFirstName: function (gender) {
 
         if (gender == this.GENDER_FEMALE) {
             return this.randomValue(this.firstNameFeMaleJson); 
@@ -100,7 +100,7 @@ const personGenerator = {
     },
 
 
-    randomSurname: function (gender = this.randomGender()) {
+    randomSurname: function (gender) {
         
         // surnameJson - фамилия
         // происходит возврат объекта 
@@ -128,7 +128,4 @@ const personGenerator = {
         return this.person;
     }
 };
-console.log();
-console.log('randomIntNumber - ' + personGenerator.randomIntNumber());
-console.log('randomGender - ' + personGenerator.randomGender());
-console.log(' this.randomGender() ' + personGenerator.randomGender());
+
