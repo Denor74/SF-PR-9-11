@@ -142,6 +142,55 @@ const personGenerator = {
         return this.randomValue(this.proffNameMaleJson);
     },
 
+    randomPatronomic: function(gender) {
+        // Вводим переменную со свободной выборкой из JSON с мужскими именами
+        let nameString = this.randomValue(this.firstNameMaleJson);
+        // Определяем последний символ имени
+        let nameLastSymbol = nameString.slice(-1);
+        // Определяем два последних символа имени
+        let nameLastSymbolTwo = nameString.slice(-2);
+    
+        // console.log('nameLastSymbol : ' + nameLastSymbol);
+        // console.log('nameLastSymbolTwo : ' + nameLastSymbolTwo);
+        // Генерация мужского отчества
+        if (gender == this.GENDER_MALE) 
+        {
+
+            if (nameLastSymbol == 'й') {
+                let nameStringPatr = nameString.slice(0, -1);
+                return patronomic = nameStringPatr + 'евич';
+                
+            }
+            if (nameLastSymbol == 'а' || nameLastSymbol == 'ч') {
+                let nameStringPatr = nameString.slice(0, -1);
+                return patronomic = nameStringPatr + 'ович';
+                
+            }
+            if (nameLastSymbolTwo == 'ил' || nameLastSymbolTwo == 'им' || nameLastSymbolTwo == 'ан' || nameLastSymbolTwo == 'др' || nameLastSymbolTwo == 'ем') {
+                let nameStringPatr = nameString;
+                return patronomic = nameStringPatr + 'ович';
+            }
+            else {
+                return nameString + 'евич';
+            }
+
+        }
+        // Если gender == this.GENDER_FEMALE женское имя
+        else {
+            if (nameLastSymbol == 'й') {
+                let nameStringPatr = nameString.slice(0, -1);
+                return patronomic = nameStringPatr + 'евна';
+            }
+            if (nameLastSymbolTwo == 'та') {
+                let nameStringPatr = nameString.slice(0, -1);
+                return patronomic = nameStringPatr + 'ична';
+            }
+            return nameString + 'овна';
+        }  
+        
+        
+    },
+
 
     // метод getPerson продолжает выполнение в файле init.js
     getPerson: function () {
@@ -154,9 +203,11 @@ const personGenerator = {
         this.person.surName = this.randomSurname(gender);
         this.person.birthYear = this.randomIntNumber(1974, 1999);
         this.person.proffName = this.randomProffName(gender);
+        this.person.patronomic = this.randomPatronomic(gender);
         
 
         return this.person;
     }
 };
 
+//console.log("randomPatronomic - " + personGenerator.randomPatronomic());
