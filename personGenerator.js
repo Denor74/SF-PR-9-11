@@ -84,6 +84,24 @@ const personGenerator = {
         }
     }`,
 
+    monthYearJson: `{
+        "count": 12,
+        "list": {     
+            "id_1": "Января",
+            "id_2": "Февраля",
+            "id_3": "Марта",
+            "id_4": "Апреля"
+            "id_5": "Мая",
+            "id_6": "Июня",
+            "id_7": "Июля",
+            "id_8": "Августа",
+            "id_9": "Сентября",
+            "id_10": "Октября",
+            "id_11": "Ноября",
+            "id_12": "Декабря"
+        }
+    }`,
+
 
     // Константы в верхнем регистре - псевдоним для константы используются только как псевдонимы для «жёстко закодированных» значений
     GENDER_MALE: 'Мужчина',
@@ -191,14 +209,25 @@ const personGenerator = {
         
     },
 
+    randomMonthYear: function () {
+
+        let monthYear = this.randomValue(this.monthYearJson);
+        return monthYear;
+        
+
+    },
+
 
     // метод getPerson продолжает выполнение в файле init.js
     getPerson: function () {
         let gender = this.randomGender();
+        let month = this.randomMonthYear();
+        //console.log('monthYear ' +  monthYear);
         console.log('gender ' + gender);
         this.person = {};
 
         this.person.gender = gender;
+        this.person.monthYear = month;
         this.person.firstName = this.randomFirstName(gender);
         this.person.surName = this.randomSurname(gender);
         this.person.birthYear = this.randomIntNumber(1974, 1999);

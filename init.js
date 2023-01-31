@@ -15,6 +15,7 @@ window.onload = function()
     document.getElementById('firstNameOutput').innerText = initPerson.firstName;
     document.getElementById('surNameOutput').innerText = initPerson.surName;
     document.getElementById('birthYearOutput').innerText = initPerson.birthYear;
+    document.getElementById('monthYearOutput').innerText = initPerson.monthYear;
     
     // вывод пола
      document.getElementById('genderOutput').innerText = initPerson.gender;
