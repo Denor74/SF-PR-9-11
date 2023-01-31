@@ -87,18 +87,18 @@ const personGenerator = {
     monthYearJson: `{
         "count": 12,
         "list": {     
-            "id_1": "Января",
-            "id_2": "Февраля",
-            "id_3": "Марта",
-            "id_4": "Апреля"
-            "id_5": "Мая",
-            "id_6": "Июня",
-            "id_7": "Июля",
-            "id_8": "Августа",
-            "id_9": "Сентября",
-            "id_10": "Октября",
-            "id_11": "Ноября",
-            "id_12": "Декабря"
+            "id_1": "января",
+            "id_2": "февраля",
+            "id_3": "марта",
+            "id_4": "апреля",
+            "id_5": "мая",
+            "id_6": "июня",
+            "id_7": "июля",
+            "id_8": "августа",
+            "id_9": "сентября",
+            "id_10": "октября",
+            "id_11": "ноября",
+            "id_12": "декабря"
         }
     }`,
 
@@ -131,21 +131,21 @@ const personGenerator = {
     randomFirstName: function (gender) {
 
         if (gender == this.GENDER_FEMALE) {
-            return this.randomValue(this.firstNameFeMaleJson); 
+            return this.randomValue(this.firstNameFeMaleJson);
         }
 
         return this.randomValue(this.firstNameMaleJson);
-        
+
     },
 
 
     randomSurname: function (gender) {
-        
+
         // surnameJson - фамилия
         // происходит возврат объекта 
         let surname = this.randomValue(this.surnameJson);
         if (gender === this.GENDER_FEMALE) {
-            return surname + 'a'; 
+            return surname + 'a';
         }
         return surname;
 
@@ -154,41 +154,39 @@ const personGenerator = {
     randomProffName: function (gender) {
 
         if (gender == this.GENDER_FEMALE) {
-            return this.randomValue(this.proffNameFeMaleJson); 
+            return this.randomValue(this.proffNameFeMaleJson);
         }
 
         return this.randomValue(this.proffNameMaleJson);
     },
 
-    randomPatronomic: function(gender) {
+    randomPatronomic: function (gender) {
         // Вводим переменную со свободной выборкой из JSON с мужскими именами
         let nameString = this.randomValue(this.firstNameMaleJson);
         // Определяем последний символ имени
         let nameLastSymbol = nameString.slice(-1);
         // Определяем два последних символа имени
         let nameLastSymbolTwo = nameString.slice(-2);
-    
+
         // console.log('nameLastSymbol : ' + nameLastSymbol);
         // console.log('nameLastSymbolTwo : ' + nameLastSymbolTwo);
         // Генерация мужского отчества
-        if (gender == this.GENDER_MALE) 
-        {
+        if (gender == this.GENDER_MALE) {
 
             if (nameLastSymbol == 'й') {
                 let nameStringPatr = nameString.slice(0, -1);
                 return patronomic = nameStringPatr + 'евич';
-                
+
             }
             if (nameLastSymbol == 'а' || nameLastSymbol == 'ч') {
                 let nameStringPatr = nameString.slice(0, -1);
                 return patronomic = nameStringPatr + 'ович';
-                
+
             }
             if (nameLastSymbolTwo == 'ил' || nameLastSymbolTwo == 'им' || nameLastSymbolTwo == 'ан' || nameLastSymbolTwo == 'др' || nameLastSymbolTwo == 'ем') {
                 let nameStringPatr = nameString;
                 return patronomic = nameStringPatr + 'ович';
-            }
-            else {
+            } else {
                 return nameString + 'евич';
             }
 
@@ -204,17 +202,27 @@ const personGenerator = {
                 return patronomic = nameStringPatr + 'ична';
             }
             return nameString + 'овна';
-        }  
-        
-        
+        }
+
+
     },
 
     randomMonthYear: function () {
 
         let monthYear = this.randomValue(this.monthYearJson);
         return monthYear;
-        
 
+    },
+
+    randomDataBirth: function (month) {
+
+        if (month == 'февраля') {
+            return this.randomIntNumber(28, 1);
+        }
+        if (month == 'сентября' || month == 'апреля' || month == 'июня' || month == 'ноября') {
+            return this.randomIntNumber(30, 1);
+        }
+        return this.randomIntNumber(31, 1);
     },
 
 
@@ -222,18 +230,19 @@ const personGenerator = {
     getPerson: function () {
         let gender = this.randomGender();
         let month = this.randomMonthYear();
+        let birthYear = this.randomIntNumber(1974, 1999);
         //console.log('monthYear ' +  monthYear);
         console.log('gender ' + gender);
         this.person = {};
 
         this.person.gender = gender;
-        this.person.monthYear = month;
+        this.person.monthBirth = month;
         this.person.firstName = this.randomFirstName(gender);
         this.person.surName = this.randomSurname(gender);
-        this.person.birthYear = this.randomIntNumber(1974, 1999);
+        this.person.birthYear = birthYear;
         this.person.proffName = this.randomProffName(gender);
         this.person.patronomic = this.randomPatronomic(gender);
-        
+        this.person.dataBirth = this.randomDataBirth(month);
 
         return this.person;
     }
