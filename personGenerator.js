@@ -203,49 +203,49 @@ const personGenerator = {
   // Генерация месяца рождения
   randomMonthYear: function () {
     let monthNumber = this.randomIntNumber(12, 1);
-    let monthYear;
+    let monthBirth;
 
     switch (monthNumber) {
       case 1:
-        monthYear = "января";
+        monthBirth = "января";
         break;
       case 2:
-        monthYear = "февраля";
+        monthBirth = "февраля";
         break;
       case 3:
-        monthYear = "марта";
+        monthBirth = "марта";
         break;
       case 4:
-        monthYear = "апреля";
+        monthBirth = "апреля";
         break;
       case 5:
-        monthYear = "мая";
+        monthBirth = "мая";
         break;
       case 6:
-        monthYear = "июня";
+        monthBirth = "июня";
         break;
       case 7:
-        monthYear = "июля";
+        monthBirth = "июля";
         break;
       case 8:
-        monthYear = "августа";
+        monthBirth = "августа";
         break;
       case 9:
-        monthYear = "сентября";
+        monthBirth = "сентября";
         break;
       case 10:
-        monthYear = "октября";
+        monthBirth = "октября";
         break;
       case 11:
-        monthYear = "ноября";
+        monthBirth = "ноября";
         break;
       case 12:
-        monthYear = "декабря";
+        monthBirth = "декабря";
         break;
     }
     console.log(monthNumber);
-    console.log(monthYear);
-    return monthYear;
+    console.log(monthBirth);
+    return monthBirth;
   },
   // Генерация даты рождения. Используется аргумент month для выбора числа в зависимости от месяца рождения
   randomDataBirth: function (month) {
